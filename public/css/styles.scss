@@ -1,0 +1,122 @@
+$body_bg_left_color: #62357a;
+$body_bg_right_color: #9e26de;
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Didact Gothic', sans-serif;	
+}
+
+body{
+	height: 100vh;
+	width: 100%;
+	background-image: linear-gradient(to right, $body_bg_left_color, $body_bg_right_color);
+	padding-top: 10vh;
+	box-sizing: border-box;
+}
+
+#container{
+	height: 80vh;
+	width: 80%;
+	margin: 0 auto;
+
+	.left{
+		width: 40%;
+		height: inherit;
+		float: left;
+		background-image: linear-gradient(to top right, #e0e0e0, #fff);
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+
+		.left-ctn{
+			height: 100%;
+			width: 90%;
+			margin: 0 auto;
+			padding: 20px 0;
+			box-sizing: border-box;
+
+			a{
+				text-decoration: none;
+				font-weight: 500;
+
+				i.fa{
+					border: 1px solid $body_bg_right_color;
+					border-radius: 50%;
+					padding: 8px;
+					box-sizing: border-box;
+					font-size: 10px;
+				}
+			}
+
+			.signin{
+				height: auto;
+				width: 100%;
+				text-align: center;
+				margin-top: 100px;
+				font-size: 25px;
+				letter-spacing: 2px;
+				color: $body_bg_left_color;
+			}
+
+			form{
+				height: 200px;
+				width: 100%;
+				margin-top: 30px;
+
+				.input-ctn{
+					height: 30px;
+					width: 60%;
+					margin: 0 auto;
+					margin-bottom: 20px;
+
+					input{
+						height: inherit;
+						width: 100%;
+						border: none;
+						box-shadow: none;
+						border-bottom: 1px solid #6e6e6e;
+						padding-bottom: 3px;
+						padding-right: 6px;
+						padding-left: 6px;
+						box-sizing: border-box;
+						background: none;
+					}
+				}
+
+				.btn-ctn{
+					@extend .input-ctn;
+					width: 50%;
+					margin-top: 50px;
+					height: 50px;
+					input{
+						box-shadow: none;
+						border: none;
+						height: inherit;
+						width: 100%;
+						background: $body_bg_left_color;
+						color: #fff;
+						font-size: 19px;
+						border-radius: 5px;
+						box-shadow: 0px 6px 10px 0px rgba(0,0,0,.3);
+					}
+				}
+			}
+		}
+	}
+
+	.right{
+		width: 60%;
+		float: right;
+		height: inherit;
+		background-image: linear-gradient(rgba(212, 40, 140, .6),rgba(212, 40, 140, .6)), url(../images/Professor.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+	    font-size: 25px;
+	    color: #fff;
+	    text-transform: uppercase;
+	}
+}

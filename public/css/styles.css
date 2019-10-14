@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Didact Gothic", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(to right, #62357a, #9e26de);
+  padding-top: 10vh;
+  box-sizing: border-box;
+}
+
+#container {
+  height: 80vh;
+  width: 80%;
+  margin: 0 auto;
+}
+#container .left {
+  width: 40%;
+  height: inherit;
+  float: left;
+  background-image: linear-gradient(to top right, #e0e0e0, #fff);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+#container .left .left-ctn {
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+#container .left .left-ctn a {
+  text-decoration: none;
+  font-weight: 500;
+}
+#container .left .left-ctn a i.fa {
+  border: 1px solid #9e26de;
+  border-radius: 50%;
+  padding: 8px;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+#container .left .left-ctn .signin {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 100px;
+  font-size: 25px;
+  letter-spacing: 2px;
+  color: #62357a;
+}
+#container .left .left-ctn form {
+  height: 200px;
+  width: 100%;
+  margin-top: 30px;
+}
+#container .left .left-ctn form .input-ctn, #container .left .left-ctn form .btn-ctn {
+  height: 30px;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+#container .left .left-ctn form .input-ctn input, #container .left .left-ctn form .btn-ctn input {
+  height: inherit;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid #6e6e6e;
+  padding-bottom: 3px;
+  padding-right: 6px;
+  padding-left: 6px;
+  box-sizing: border-box;
+  background: none;
+}
+#container .left .left-ctn form .btn-ctn {
+  width: 50%;
+  margin-top: 50px;
+  height: 50px;
+}
+#container .left .left-ctn form .btn-ctn input {
+  box-shadow: none;
+  border: none;
+  height: inherit;
+  width: 100%;
+  background: #62357a;
+  color: #fff;
+  font-size: 19px;
+  border-radius: 5px;
+  box-shadow: 0px 6px 10px 0px rgba(0, 0, 0, 0.3);
+}
+#container .right {
+  width: 60%;
+  float: right;
+  height: inherit;
+  background-image: linear-gradient(rgba(212, 40, 140, 0.6), rgba(212, 40, 140, 0.6)), url(../images/Professor.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=styles.css.map */

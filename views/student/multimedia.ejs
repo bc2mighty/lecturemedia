@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
+    <title><%= multimedia.title %></title>
+    <!-- Custom CSS -->
+    <link href="/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    <style>
+      .video-wrapper {
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+
+      // Video controls
+      .video-controls {
+        position: absolute;
+        bottom: -45px; // height of controls container
+        left: 50%;
+        padding: 7px;
+        background: rgba(255, 255, 255, .35);
+        transform: translateX(-50%);
+        transition: bottom .25s ease-in;
+      }
+
+      .video-wrapper:focus > video + .video-controls,
+      .video-wrapper:hover > video + .video-controls {
+        bottom: 12px;
+        z-index: 2;
+      }
+
+      // Video controls
+      .btn {
+        padding: 5px 0;
+        width: 31px;
+        font-size: 18px;
+        text-align: center;
+        color: #fff;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        transition: opacity .175s ease-in;
+      }
+
+      .btn:focus {
+        outline: 0;
+      }
+
+      .btn:hover {
+        opacity: .25;
+      }
+
+      // Progress bar
+      .progress-bar-fill {
+        width: 0;
+        height: 4px;
+        background-color: #e74c3c;
+        transition: width .35s linear;
+      }
+
+      @media (min-width: 900px){
+          .modal-dialog{
+              max-width: 700px;
+              height: 500px;
+          }
+      }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- Logo -->
+                    <!-- ============================================================== -->
+                    <a class="navbar-brand" href="" style="font-size: 23px;font-style:bold;">
+                        LectureMultiMedia
+                        <!-- Logo icon -->
+                        <b class="logo-icon">
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <!-- <img src="/assets/images/logo-icon.png" alt="homepage" class="dark-logo" /> -->
+                            <!-- Light Logo icon -->
+                            <!-- <img src="/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> -->
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text -->
+                        <span class="logo-text">
+                             <!-- dark Logo text -->
+                             <!-- <img src="/assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
+                             <!-- Light Logo text -->
+                             <!-- <img src="/assets/images/logo-light-text.png" class="light-logo" alt="homepage" /> -->
+                        </span>
+                    </a>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                    <!-- This is for the sidebar toggle which is visible on mobile only -->
+                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-left mr-auto">
+                        <!-- ============================================================== -->
+                        <!-- Search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search position-absolute">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- Right side toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav float-right">
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
+                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
+                            </div>
+                        </li>
+                        <!-- ============================================================== -->
+                        <!-- User profile and search -->
+                        <!-- ============================================================== -->
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <%- include('nav_side.ejs') %>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <h4 class="page-title"><%= multimedia.title %></h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/student/dashboard">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Multimedia File</li>
+                                </ol>
+                            </nav>
+                        </div>
+              	        <% if(locals.message){ %>
+              	            <p style="color:green;font-size: 15px;text-align: center;"><%=message.success%></p>
+              	        <% } %>
+              	        <% if(locals.message){ %>
+              	            <p style="color:red;font-size: 15px;text-align: center;"><%=message.failure%></p>
+              	        <% } %>
+                    </div>
+                    <div class="col-7">
+                        <div class="text-right upgrade-btn">
+                            <!-- <a href="https://wrappixel.com/templates/xtremestudent/" class="btn btn-danger text-white" target="_blank">Upgrade to Pro</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+
+                <div class="row">
+                  <div class="video-wrapper">
+                    <video class="video video-element" src="<%= multimedia.multimediaPath %>" autoplay poster="">
+                    </video>
+                    <div class="video-controls">
+                      <button class="btn btn-backward"><span class="fa fa-backward"></span></button>
+
+                      <button class="btn btn-play"><span class="fa fa-play"></span></button>
+
+                      <button class="btn btn-forward"><span class="fa fa-forward"></span></button>
+
+                      <button class="btn btn-stop"><span class="fa fa-stop"></span></button>
+
+                      <button class="btn btn-reset" hidden><span class="fa fa-undo"></span></button>
+
+                      <button class="btn btn-mute"><span class="fa fa-volume-off"></span></button>
+
+                      <button class="btn btn-expand"><span class="fa fa-expand"></span></button>
+                    </div>
+
+                    <div class="progress-bar">
+                      <div class="progress-bar-fill"></div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Recent Comments</h4>
+                            </div>
+                            <div class="comment-widgets scrollable">
+                                <!-- Comment Row -->
+                                <div class="d-flex flex-row comment-row m-t-0">
+                                    <div class="p-2"><img src="../../assets/images/users/1.jpg" alt="user" width="50" class="rounded-circle"></div>
+                                    <div class="comment-text w-100">
+                                        <h6 class="font-medium">James Anderson</h6>
+                                        <span class="m-b-15 d-block">Lorem Ipsum is simply dummy text of the printing and type setting industry. </span>
+                                        <div class="comment-footer">
+                                            <span class="text-muted float-right">April 14, 2016</span> <span class="label label-rounded label-primary">Pending</span> <span class="action-icons">
+                                                    <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
+                                                    <a href="javascript:void(0)"><i class="ti-check"></i></a>
+                                                    <a href="javascript:void(0)"><i class="ti-heart"></i></a>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="/student/multimedia/<%= multimediaId %>" action="post" class="form-horizontal form-material" id="comment-form">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Message</label>
+                                        <div class="col-md-12">
+                                            <textarea rows="5" id="comment-textbox" name="message" class="form-control form-control-line"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-primary" id="btn-send">Send Message</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by Xtreme Student. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+            $("#comment-form").submit(function(e){
+                $("#comment-textbox").css('border','1px solid #e9ecef');
+                if($("#comment-textbox").val() == ""){
+                    $("#comment-textbox").css('border','1px solid red');
+                    e.preventDefault();
+                }
+            })
+
+        })
+    </script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script type="text/javascript">
+      const btnBackward = document.querySelector('.btn-backward');
+      const btnExpand = document.querySelector('.btn-expand');
+      const btnMute = document.querySelector('.btn-mute');
+      const btnMuteIcon = btnMute.querySelector('.fa');
+      const btnPlay = document.querySelector('.btn-play');
+      const btnPlayIcon = btnPlay.querySelector('.fa');
+      const btnForward = document.querySelector('.btn-forward');
+      const btnReset = document.querySelector('.btn-reset');
+      const btnStop = document.querySelector('.btn-stop');
+      const progressBar = document.querySelector('.progress-bar');
+      const progressBarFill = document.querySelector('.progress-bar-fill');
+      const videoElement = document.querySelector('.video-element');
+
+      videoElement.pause();
+      videoElement.currentTime = 0;
+
+      // Toggle full-screen mode
+      const expandVideo = () => {
+      if (videoElement.requestFullscreen) {
+        videoElement.requestFullscreen();
+      } else if (videoElement.mozRequestFullScreen) {
+        // Version for Firefox
+        videoElement.mozRequestFullScreen();
+      } else if (videoElement.webkitRequestFullscreen) {
+        // Version for Chrome and Safari
+        videoElement.webkitRequestFullscreen();
+      }
+      }
+
+      // Move the video backward for 5 seconds
+      const moveBackward = () => {
+      videoElement.currentTime -= 5;
+      }
+
+      // Move the video forward for 5 seconds
+      const moveForward = () => {
+      videoElement.currentTime += 5;
+      }
+
+      // Mute the video
+      const muteVideo = () => {
+      if (videoElement.muted) {
+        videoElement.muted = false;
+
+        btnMuteIcon.classList.remove('fa-volume-up');
+        btnMuteIcon.classList.add('fa-volume-off');
+      } else {
+        videoElement.muted = true;
+
+        btnMuteIcon.classList.remove('fa-volume-off');
+        btnMuteIcon.classList.add('fa-volume-up');
+      }
+      }
+
+      // Play / Pause the video
+      const playPauseVideo = () => {
+      if (videoElement.paused) {
+        videoElement.play();
+
+        btnPlayIcon.classList.remove('fa-play');
+        btnPlayIcon.classList.add('fa-pause');
+      } else {
+        videoElement.pause();
+
+        btnPlayIcon.classList.remove('fa-pause');
+        btnPlayIcon.classList.add('fa-play');
+      }
+      }
+
+      // Restart the video
+      const restartVideo = () => {
+      videoElement.currentTime = 0;
+
+      btnPlay.removeAttribute('hidden');
+      btnReset.setAttribute('hidden', 'true');
+      }
+
+      // Stop the video
+      const stopVideo = () => {
+      videoElement.pause();
+      videoElement.currentTime = 0;
+      btnPlayIcon.classList.remove('fa-pause');
+      btnPlayIcon.classList.add('fa-play');
+      }
+
+      // Update progress bar as the video plays
+      const updateProgress = () => {
+      // Calculate current progress
+      let value = (100 / videoElement.duration) * videoElement.currentTime;
+
+      // Update the slider value
+      progressBarFill.style.width = value + '%';
+      }
+
+      // Event listeners
+      btnBackward.addEventListener('click', moveBackward, false);
+      btnExpand.addEventListener('click', expandVideo, false);
+      btnMute.addEventListener('click', muteVideo, false);
+      btnPlay.addEventListener('click', playPauseVideo, false);
+      btnForward.addEventListener('click', moveForward, false);
+      btnReset.addEventListener('click', restartVideo, false);
+      btnStop.addEventListener('click', stopVideo, false);
+      videoElement.addEventListener('ended', () => {
+      btnPlay.setAttribute('hidden', 'true');
+      btnReset.removeAttribute('hidden');
+      }, false);
+      videoElement.addEventListener('timeupdate', updateProgress, false);
+    </script>
+    <script src="/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/dist/js/app-style-switcher.js"></script>
+    <!--Wave Effects -->
+    <script src="/dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/dist/js/custom.js"></script>
+</body>
+
+</html>

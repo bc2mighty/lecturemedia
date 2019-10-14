@@ -1,0 +1,32 @@
+{
+  "name": "lecturemedia",
+  "version": "1.0.0",
+  "description": "Web Lecture Media System",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akinade Tunmise Ebenezer (CSC/14/0264)",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^16.1.4",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.16.2",
+    "joi": "^14.3.1",
+    "mongoose": "^5.7.1",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "pusher": "^3.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "nodemon": "^1.19.2"
+  }
+}

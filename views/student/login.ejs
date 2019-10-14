@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Login | Web Based Multimedia Lecture System</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Source+Sans+Pro&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+
+	<div id="container">
+		<div class="left">
+			<div class="left-ctn">
+				<a href=""><i class="fa fa-chevron-left"></i>&nbsp;&nbsp;Return Home</a>
+				<div class="signin">STUDENT SIGN IN PAGE</div>
+				<form action="/student/login" method="post">
+	        <% if(locals.message){ %>
+	            <p style="text-align:center;color:green;font-size: 15px;text-align: center;"><%=message.success%></p>
+	        <% } %>
+	        <% if(locals.message){ %>
+	            <p style="text-align:center;color:red;font-size: 15px;text-align: center;"><%=message.failure%></p>
+	        <% } %>
+	        <% if(error_message != ""){ %>
+	            <p style="text-align:center;color:red;font-size: 15px;text-align: center;"><%=error_message%></p>
+	        <% } %>
+					<div class="input-ctn">
+						<input type="text" name="matric_no" value="<%= matric_no != null && matric_no != '' ? matric_no : '' %>" placeholder="Enter Your Matric Number">
+					</div>
+					<div class="input-ctn">
+						<input type="password" name="password" placeholder="Enter Your Password">
+					</div>
+					<div class="btn-ctn">
+						<input type="submit" value="Sign In">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="right">
+			Student Login Page
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+</body>
+</html>
